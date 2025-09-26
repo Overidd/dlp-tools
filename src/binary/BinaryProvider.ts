@@ -1,70 +1,86 @@
-import { CustomError } from "../core";
-import { typeSystem } from "../utils";
-import { ytDlpUrls } from "./binMap";
-import { InstallBinary } from "./InstallBinary";
+import { CustomError } from '../core';
+import { typeSystem } from '../utils';
+import { ytDlpUrls } from './binMap';
+import { InstallBinary } from './InstallBinary';
 
-
-
+interface BinaryPaths {
+  ytdlp?: string;
+  ffmpeg?: string;
+}
 
 export class BinaryProvider {
-  private ytdlpPath: string;
-  private ffmpegPath: string;
-  private installBinary: InstallBinary;
+  private readonly ytdlpPath: string;
+  private readonly ffmpegPath: string;
+  private readonly installBinary: InstallBinary;
 
   constructor({
     ytdlpPath = 'yt-dlp',
-    ffmpegPath = 'ffmpeg'
-  }) {
+    ffmpegPath = 'ffmpeg',
+  }: { ytdlpPath?: string; ffmpegPath?: string } = {}) {
     this.ytdlpPath = ytdlpPath;
     this.ffmpegPath = ffmpegPath;
     this.installBinary = new InstallBinary();
   }
 
-  getPathsSync({
-    ytdlp = true,
-    ffmpeg = true
-  }): { [key: string]: string } | null {
+  /**
+   * Get the paths of the binaries synchronously (without installation validation).
+   */
+  getPathsSync({ ytdlp = true, ffmpeg = true } = {}): BinaryPaths | null {
+    const paths: BinaryPaths = {};
 
-    // Solamnte retornamos los path exisotenes
-    return null;
+    if (ytdlp) paths.ytdlp = this.ytdlpPath;
+    if (ffmpeg) paths.ffmpeg = this.ffmpegPath;
+
+    return Object.keys(paths).length > 0 ? paths : null;
   }
 
-  async getPaths({
-    ytdlp = true,
-    ffmpeg = true
-  }): Promise<{ [key: string]: string } | null> {
-
-    return null;
+  /**
+   * Get the paths of the binaries asynchronously (without installation validation).
+   */
+  async getPaths({ ytdlp = true, ffmpeg = true } = {}): Promise<BinaryPaths | null> {
+    return this.getPathsSync({ ytdlp, ffmpeg });
   }
 
-  checkInstallationSync(): Boolean {
-    return true;
+  /**
+   * Check synchronously if the binaries exist.
+   */
+  checkInstallationSync({ ytdlp = true, ffmpeg = true } = {}): boolean {
+    try {
+      if (ytdlp && !this.installBinary.existSync(this.ytdlpPath)) return false;
+      if (ffmpeg && !this.installBinary.existSync(this.ffmpegPath)) return false;
+      return true;
+    } catch (err) {
+      throw CustomError.install(`Error checking binaries: ${(err as Error).message}`);
+    }
   }
 
-  // TODO: No debe lanzar excepciones
-  async checkInstallation({
-    ytdlp = true,
-    ffmpeg = true
-  }): Promise<Boolean> {
-    let isExistYtdlp = false;
-    let isExistFfmpeg = false;
+  /**
+   * Check asynchronously if the binaries exist. 
+   * Throws an error with recommendations if any are missing.
+   */
+  async checkInstallation({ ytdlp = true, ffmpeg = true } = {}): Promise<boolean> {
     const system = typeSystem();
 
     if (ytdlp) {
-      isExistYtdlp = await this.installBinary.existSync(this.ytdlpPath);
-
-      if (!isExistYtdlp) {
-        throw CustomError.install(`El binario ${this.ytdlpPath} no esta instalado \nRecomendado para su sistema operativo: ${system.os} ${ytDlpUrls[system.os]}`);
+      const exists = await this.installBinary.existSync(this.ytdlpPath);
+      if (!exists) {
+        throw CustomError.install(
+          `The binary "${this.ytdlpPath}" is not installed.\n` +
+          `Recommended for ${system.os}: ${ytDlpUrls[system.os]}`
+        );
       }
     }
+
     if (ffmpeg) {
-      isExistFfmpeg = await this.installBinary.existSync(this.ffmpegPath);
-
-      if (!isExistFfmpeg) {
-        throw CustomError.install(`El binario ${this.ffmpegPath} no esta instalado \nRecomendado para su sistema operativo: ${system.os} ${ytDlpUrls[system.os]}`);
+      const exists = await this.installBinary.existSync(this.ffmpegPath);
+      if (!exists) {
+        throw CustomError.install(
+          `The binary "${this.ffmpegPath}" is not installed.\n` +
+          `Recommended for ${system.os}: ${ytDlpUrls[system.os]}`
+        );
       }
     }
 
-    return Promise.resolve(isExistYtdlp && isExistFfmpeg);
+    return true;
   }
 }
