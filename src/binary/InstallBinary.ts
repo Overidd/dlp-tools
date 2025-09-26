@@ -1,8 +1,8 @@
 import { spawn, spawnSync } from 'node:child_process';
 
-export class InstallerBinary {
+export class InstallBinary {
 
-  exist = async (path: string) => {
+  existSync = async (path: string) => {
     const binaryResult = spawnSync(path, ['--version'], {
       stdio: 'ignore'
     });
@@ -10,7 +10,7 @@ export class InstallerBinary {
     return binaryResult.status === 0
   };
 
-  async existSync(path: string): Promise<boolean> {
+  async exist(path: string): Promise<boolean> {
     return new Promise((resolve) => {
       const binaryProcess = spawn(path, ['--version']);
       binaryProcess.on('close', (code) => {
