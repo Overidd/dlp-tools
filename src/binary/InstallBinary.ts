@@ -12,10 +12,19 @@ export class InstallBinary {
 
   async exist(path: string): Promise<boolean> {
     return new Promise((resolve) => {
-      const binaryProcess = spawn(path, ['--version']);
-      binaryProcess.on('close', (code) => {
-        resolve(code === 0)
-      })
+      const resul: (number | null)[] = []
+      for (let i = 1; i <= 2; i++) {
+        const binaryProcess = spawn(path, [`${'-'.repeat(i)}version`]);
+
+        binaryProcess.stdout.on('data', (data) => {
+          resul.push(data);
+        });
+
+        binaryProcess.on('close', (code) => {
+          if (resul.length < 2) return;
+          resolve(resul.some((code) => code === 0));
+        })
+      }
     })
   }
 

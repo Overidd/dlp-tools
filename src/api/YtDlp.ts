@@ -1,4 +1,4 @@
-import type { InfoOptions, InfoType, PlaylistInfo, VideoInfo } from '../interface';
+import type { FlatPlaylistInfo, InfoFormatKeyMode, InfoOptions, InfoType, PlaylistInfo, VideoInfo } from '../interface';
 import { InfoStrategyImpl } from '../strategies';
 import { BinaryProvider } from '../binary';
 import { Executer } from '../core';
@@ -14,7 +14,7 @@ interface IOptions {
   binary?: Partial<IBinary>;
 }
 
-export class YtDlp {
+export class Ytdlp {
   private binaryProvider: BinaryProvider;
 
   constructor(options: IOptions = {}) {
@@ -28,10 +28,16 @@ export class YtDlp {
     this.binaryProvider.checkInstallation();
   }
 
-  async getInfo<T extends InfoType>(
+  async getInfo<T extends InfoOptions>(
     url: string,
-    options?: InfoOptions
-  ): Promise<T extends 'video' ? VideoInfo : PlaylistInfo> {
+    options?: T
+  ): Promise<
+    T['mode'] extends 'perVideo'
+    ? VideoInfo
+    : T['mode'] extends 'singleJson'
+    ? PlaylistInfo
+    : FlatPlaylistInfo
+  > {
     const paths = await this.binaryProvider.getPaths();
     const executer = new Executer(paths?.ytdlp!);
     const command = new InfoStrategyImpl().buildCommand(url, options);

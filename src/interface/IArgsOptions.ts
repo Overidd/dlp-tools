@@ -458,6 +458,11 @@ export interface PlaylistInfo {
   epoch: number;
 }
 
+export interface FlatPlaylistInfo {
+  id: string;
+  entries: { id: string; url: string }[];
+}
+
 export interface VideoThumbnail {
   id: number;
   width?: string | number;
@@ -568,17 +573,10 @@ export interface GetFileOptions<F extends FormatKeyWord>
   metadata?: FileMetadata;
 }
 
-export interface InfoOptions {
-  /**
-   * Si es `true`, devuelve una lista plana con info limitada de la playlist.
-   * Si es `false`, obtiene información completa de cada video.
-   * @default true
-   */
-  flatPlaylist?: boolean;
-
-  /** Devuelve toda la playlist como un JSON único con `entries`. */
-  dumpSingleJson?: boolean;
-
+/**
+ * Opciones base (comunes en cualquier modo).
+ */
+interface InfoOptionsBase {
   /** Incluir todos los formatos disponibles (`--list-formats`). */
   listFormats?: boolean;
 
@@ -594,3 +592,40 @@ export interface InfoOptions {
   /** Desactiva todas las cookies. */
   noCookies?: boolean;
 }
+
+/**
+ * Caso 1: Procesar cada video con un JSON independiente.
+ */
+export interface InfoOptionsPerVideo extends InfoOptionsBase {
+  mode: "perVideo";
+  dumpSingleJson?: false;
+  flatPlaylist?: false;
+}
+
+/**
+ * Caso 2: Toda la playlist en un único JSON completo.
+ */
+export interface InfoOptionsSingleJson extends InfoOptionsBase {
+  mode: "singleJson";
+  dumpSingleJson: true;
+  flatPlaylist?: false;
+}
+
+/**
+ * Caso 3: Lista plana (solo IDs/URLs básicos).
+ */
+export interface InfoOptionsFlatPlaylist extends InfoOptionsBase {
+  mode: "flat";
+  flatPlaylist: true;
+  dumpSingleJson?: boolean;
+}
+
+/**
+ * Refinado: eliminamos propiedades inválidas con `never`.
+ */
+export type InfoOptions =
+  | (InfoOptionsPerVideo & { dumpSingleJson?: false; flatPlaylist?: false })
+  | (InfoOptionsSingleJson & { dumpSingleJson: true; flatPlaylist?: never })
+  | (InfoOptionsFlatPlaylist & { flatPlaylist: true; dumpSingleJson?: boolean });
+
+export type InfoFormatKeyMode = 'perVideo' | 'singleJson' | 'flat';

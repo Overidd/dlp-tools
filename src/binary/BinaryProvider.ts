@@ -61,7 +61,7 @@ export class BinaryProvider {
     const system = typeSystem();
 
     if (ytdlp) {
-      const exists = await this.installBinary.existSync(this.ytdlpPath);
+      const exists = await this.installBinary.exist(this.ytdlpPath);
       if (!exists) {
         throw YtdlpError.install(
           `The binary "${this.ytdlpPath}" is not installed.\n` +
@@ -71,7 +71,7 @@ export class BinaryProvider {
     }
 
     if (ffmpeg) {
-      const exists = await this.installBinary.existSync(this.ffmpegPath);
+      const exists = await this.installBinary.exist(this.ffmpegPath);
       if (!exists) {
         throw YtdlpError.install(
           `The binary "${this.ffmpegPath}" is not installed.\n` +

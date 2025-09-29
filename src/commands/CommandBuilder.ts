@@ -24,7 +24,7 @@ export class CommandBuilder {
     return this;
   }
 
-  isQuiet(): this {
+  activeQuiet(): this {
     this.args.push('--quiet');
     return this;
   }

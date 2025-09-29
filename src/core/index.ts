@@ -1,6 +1,6 @@
 
 
 export * from './Executor';
-export * from './CommandBuilder';
+export * from '../commands/CommandBuilder';
 export * from './Events';
-export * from './CustomError';
+export * from './YtdlpError';

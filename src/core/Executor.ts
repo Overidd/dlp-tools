@@ -1,6 +1,7 @@
 import { spawn } from 'node:child_process';
 import { EventEmitter } from 'node:events';
 import { PassThrough } from 'node:stream';
+import { YtdlpError } from './YtdlpError';
 
 export class Executer extends EventEmitter {
   constructor(private binaryPath: string) {
@@ -14,18 +15,26 @@ export class Executer extends EventEmitter {
     args: string[],
     passThrough?: PassThrough,
   ): Promise<string> {
+    console.log(this.binaryPath, args)
     return new Promise((resolve, reject) => {
       const proc = spawn(this.binaryPath, args);
 
       let output = '';
       let error = '';
 
+      if (passThrough) {
+        proc.stdout.pipe(passThrough);
+        proc.stderr.pipe(passThrough);
+      }
+
       proc.stdout.on('data', (data) => {
+        if (passThrough) return;
         output += data.toString();
         this.emit('progress', data.toString());
       });
 
       proc.stderr.on('data', (data) => {
+        if (passThrough) return;
         error += data.toString();
         this.emit('error', data.toString());
       });
@@ -34,8 +43,13 @@ export class Executer extends EventEmitter {
         if (code === 0) {
           resolve(output.trim());
         } else {
-          reject(new Error(error || `yt-dlp exited with code ${code}`));
+          console.log({ error })
+          reject(YtdlpError.exec(error || `yt-dlp exited with code ${code}`));
         }
+      });
+
+      proc.on('error', (err) => {
+        reject(YtdlpError.exec(err.message));
       });
     });
   }
