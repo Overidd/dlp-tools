@@ -2,13 +2,16 @@ import { spawn } from 'node:child_process';
 import { EventEmitter } from 'node:events';
 import { PassThrough } from 'node:stream';
 
-export class Executor extends EventEmitter {
-  constructor(private binaryPath: string = 'yt-dlp') {
+export class Executer extends EventEmitter {
+  constructor(private binaryPath: string) {
     super();
+    if (!binaryPath) {
+      throw new Error('Binary path is required');
+    }
   }
 
   run(
-    args: CommandBuilder[],
+    args: string[],
     passThrough?: PassThrough,
   ): Promise<string> {
     return new Promise((resolve, reject) => {

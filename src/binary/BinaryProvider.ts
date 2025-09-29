@@ -1,9 +1,8 @@
-import { CustomError } from '../core';
+import { ytDlpUrls, InstallBinary } from '.';
+import { YtdlpError } from '../core';
 import { typeSystem } from '../utils';
-import { ytDlpUrls } from './binMap';
-import { InstallBinary } from './InstallBinary';
 
-interface BinaryPaths {
+export interface BinaryPaths {
   ytdlp?: string;
   ffmpeg?: string;
 }
@@ -14,11 +13,11 @@ export class BinaryProvider {
   private readonly installBinary: InstallBinary;
 
   constructor({
-    ytdlpPath = 'yt-dlp',
-    ffmpegPath = 'ffmpeg',
+    ytdlpPath,
+    ffmpegPath,
   }: { ytdlpPath?: string; ffmpegPath?: string } = {}) {
-    this.ytdlpPath = ytdlpPath;
-    this.ffmpegPath = ffmpegPath;
+    this.ytdlpPath = ytdlpPath || 'yt-dlp';
+    this.ffmpegPath = ffmpegPath || 'ffmpeg';
     this.installBinary = new InstallBinary();
   }
 
@@ -50,7 +49,7 @@ export class BinaryProvider {
       if (ffmpeg && !this.installBinary.existSync(this.ffmpegPath)) return false;
       return true;
     } catch (err) {
-      throw CustomError.install(`Error checking binaries: ${(err as Error).message}`);
+      throw YtdlpError.install(`Error checking binaries: ${(err as Error).message}`);
     }
   }
 
@@ -64,7 +63,7 @@ export class BinaryProvider {
     if (ytdlp) {
       const exists = await this.installBinary.existSync(this.ytdlpPath);
       if (!exists) {
-        throw CustomError.install(
+        throw YtdlpError.install(
           `The binary "${this.ytdlpPath}" is not installed.\n` +
           `Recommended for ${system.os}: ${ytDlpUrls[system.os]}`
         );
@@ -74,7 +73,7 @@ export class BinaryProvider {
     if (ffmpeg) {
       const exists = await this.installBinary.existSync(this.ffmpegPath);
       if (!exists) {
-        throw CustomError.install(
+        throw YtdlpError.install(
           `The binary "${this.ffmpegPath}" is not installed.\n` +
           `Recommended for ${system.os}: ${ytDlpUrls[system.os]}`
         );
@@ -84,3 +83,22 @@ export class BinaryProvider {
     return true;
   }
 }
+
+
+
+// // Métodos wrapper
+// getPathsSync(params?: { ytdlp?: boolean; ffmpeg?: boolean }) {
+//   return this.binaryProvider.getPathsSync(params);
+// }
+
+// async getPaths(params?: { ytdlp?: boolean; ffmpeg?: boolean }) {
+//   return this.binaryProvider.getPaths(params);
+// }
+
+// checkInstallationSync(params?: { ytdlp?: boolean; ffmpeg?: boolean }) {
+//   return this.binaryProvider.checkInstallationSync(params);
+// }
+
+// async checkInstallation(params?: { ytdlp?: boolean; ffmpeg?: boolean }) {
+//   return this.binaryProvider.checkInstallation(params);
+// }

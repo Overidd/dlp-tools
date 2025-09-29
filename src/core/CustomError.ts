@@ -1,7 +1,7 @@
 
 
 
-export class CustomError extends Error {
+export class YtdlpError extends Error {
 
   constructor(
     public code: string,
@@ -10,18 +10,18 @@ export class CustomError extends Error {
   ) {
     super(message);
     this.name = "CustomError";
-    Object.setPrototypeOf(this, CustomError.prototype); // fix para instanceof
+    Object.setPrototypeOf(this, YtdlpError.prototype); // fix para instanceof
   }
 
   static install(message: string, details?: unknown) {
-    return new CustomError("INSTALL_ERROR", message, details);
+    return new YtdlpError("INSTALL_ERROR", message, details);
   }
 
   static download(message: string, details?: unknown) {
-    return new CustomError("DOWNLOAD_ERROR", message, details);
+    return new YtdlpError("DOWNLOAD_ERROR", message, details);
   }
 
   static exec(message: string, details?: unknown) {
-    return new CustomError("EXEC_ERROR", message, details);
+    return new YtdlpError("EXEC_ERROR", message, details);
   }
 }

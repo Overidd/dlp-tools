@@ -1,38 +1,41 @@
-import { Executor } from '../core';
-
-
-interface IYtDlp {
-  getInfo(url: string): Promise<any>
-}
+import type { InfoOptions, InfoType, PlaylistInfo, VideoInfo } from '../interface';
+import { InfoStrategyImpl } from '../strategies';
+import { BinaryProvider } from '../binary';
+import { Executer } from '../core';
 
 interface IBinary {
-  autoDownload: boolean,
-  ffmpegPath: string | null,
-  ytDlpPath: string | null,
+  autoDownload: boolean;
+  ffmpegPath?: string;
+  ytDlpPath?: string;
 }
 
 interface IOptions {
-  outputDir: string,
-  binary: IBinary,
+  outputDir?: string;
+  binary?: Partial<IBinary>;
 }
 
-export class YtDlp implements IYtDlp {
-  private binary: IBinary;
+export class YtDlp {
+  private binaryProvider: BinaryProvider;
 
-  constructor(options: IOptions) {
-    this.binary = options.binary
-    // TODO temporal la asignacion de la ruta del binario
+  constructor(options: IOptions = {}) {
+    this.binaryProvider = new BinaryProvider({
+      ytdlpPath: options.binary?.ytDlpPath,
+      ffmpegPath: options.binary?.ffmpegPath,
+    });
+    // debug: config.debug || false,
+
+    // Initial check
+    this.binaryProvider.checkInstallation();
   }
 
-  async getInfo(url: string): Promise<any> {
-    const executor = new Executor(this.binary.ytDlpPath || 'yt-dlp');
-
-    const command = new CommandBuilder()
-      .setUrl(url)
-      .setFlag('--dump-json')
-      .build();
-
-    return await executor.run(command);
+  async getInfo<T extends InfoType>(
+    url: string,
+    options?: InfoOptions
+  ): Promise<T extends 'video' ? VideoInfo : PlaylistInfo> {
+    const paths = await this.binaryProvider.getPaths();
+    const executer = new Executer(paths?.ytdlp!);
+    const command = new InfoStrategyImpl().buildCommand(url, options);
+    const output = await executer.run(command);
+    return JSON.parse(output);
   }
-
 }
