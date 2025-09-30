@@ -9,8 +9,8 @@ export class CommandBuilder {
     return this;
   }
 
-  setFlag(flag: string): this {
-    this.args.push(flag);
+  setFlag(flag: string, isActive?: boolean): this {
+    if (isActive) this.args.push(flag);
     return this;
   }
 

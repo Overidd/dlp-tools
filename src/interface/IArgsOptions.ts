@@ -440,7 +440,10 @@ interface Subtitles {
   [k: string]: { ext: string; url: string; name: string }[];
 }
 
-export type InfoType = 'video' | 'playlist';
+export interface FlatVideoInfo {
+  id: string;
+  entries: { id: string; url: string }[];
+}
 
 export interface PlaylistInfo {
   id: string;
@@ -458,10 +461,66 @@ export interface PlaylistInfo {
   epoch: number;
 }
 
-export interface FlatPlaylistInfo {
+export interface FlatPlayList {
+  _type: string;
+  ie_key: string;
   id: string;
-  entries: { id: string; url: string }[];
+  url: string;
+  title: string;
+  description: null;
+  duration: number;
+  channel_id: string;
+  channel: string;
+  channel_url: string;
+  uploader: string;
+  uploader_id: null;
+  uploader_url: null;
+  thumbnails: Thumbnail[];
+  timestamp: null;
+  release_timestamp: null;
+  availability: null;
+  view_count: null;
+  live_status: null;
+  channel_is_verified: null;
+  __x_forwarded_for_ip: null;
+  webpage_url: string;
+  original_url: string;
+  webpage_url_basename: string;
+  webpage_url_domain: string;
+  extractor: string;
+  extractor_key: string;
+  playlist_count: number;
+  playlist: string;
+  playlist_id: string;
+  playlist_title: string;
+  playlist_uploader: null;
+  playlist_uploader_id: null;
+  playlist_channel: null;
+  playlist_channel_id: null;
+  playlist_webpage_url: string;
+  n_entries: number;
+  playlist_index: number;
+  __last_playlist_index: number;
+  playlist_autonumber: number;
+  epoch: number;
+  duration_string: string;
+  release_year: null;
+  _version: Version;
 }
+
+export interface Version {
+  version: string;
+  current_git_head: null;
+  release_git_head: string;
+  repository: string;
+}
+
+export interface Thumbnail {
+  url: string;
+  height: number;
+  width: number;
+}
+
 
 export interface VideoThumbnail {
   id: number;
@@ -597,35 +656,49 @@ interface InfoOptionsBase {
  * Caso 1: Procesar cada video con un JSON independiente.
  */
 export interface InfoOptionsPerVideo extends InfoOptionsBase {
-  mode: "perVideo";
   dumpSingleJson?: false;
   flatPlaylist?: false;
 }
 
 /**
- * Caso 2: Toda la playlist en un único JSON completo.
+ * Caso 3: Toda la playlist en un único JSON completo.
  */
 export interface InfoOptionsSingleJson extends InfoOptionsBase {
-  mode: "singleJson";
+  /**
+   * Solo se aplica en playlist
+   */
   dumpSingleJson: true;
-  flatPlaylist?: false;
+
+  flatPlaylist?: boolean;
 }
 
-/**
- * Caso 3: Lista plana (solo IDs/URLs básicos).
- */
-export interface InfoOptionsFlatPlaylist extends InfoOptionsBase {
-  mode: "flat";
-  flatPlaylist: true;
+// Caso 4: Lista plana (solo IDs/URLs básicos) de ingleJson.
+export interface InfoOptionsSingleFlat extends InfoOptionsBase {
+  /**
+   * Solo se aplica en playlist
+   */
   dumpSingleJson?: boolean;
+
+  /** Si es `true`, devuelve una lista plana con info limitada de la playlist. */
+  flatPlaylist: true;
 }
 
-/**
- * Refinado: eliminamos propiedades inválidas con `never`.
- */
-export type InfoOptions =
-  | (InfoOptionsPerVideo & { dumpSingleJson?: false; flatPlaylist?: false })
-  | (InfoOptionsSingleJson & { dumpSingleJson: true; flatPlaylist?: never })
-  | (InfoOptionsFlatPlaylist & { flatPlaylist: true; dumpSingleJson?: boolean });
 
-export type InfoFormatKeyMode = 'perVideo' | 'singleJson' | 'flat';
+// Unión de opciones
+export type InfoOptions =
+  | InfoOptionsPerVideo
+  | InfoOptionsSingleJson
+  | InfoOptionsSingleFlat;
+
+// Inferencia condicional
+export type InfoResult<T> =
+  T extends InfoOptionsPerVideo ? InfoResultMap["VideoInfo"] :
+  T extends InfoOptionsSingleJson ? InfoResultMap["dumpSingleJson"] :
+  T extends InfoOptionsSingleFlat ? InfoResultMap["flatPlaylist"] :
+  never;
+
+interface InfoResultMap {
+  VideoInfo: VideoInfo;
+  dumpSingleJson: PlaylistInfo;
+  flatPlaylist: FlatPlayList[];
+}

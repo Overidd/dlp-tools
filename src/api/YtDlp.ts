@@ -1,7 +1,8 @@
-import type { FlatPlaylistInfo, InfoFormatKeyMode, InfoOptions, InfoType, PlaylistInfo, VideoInfo } from '../interface';
+import type { InfoOptions, InfoResult } from '../interface';
 import { InfoStrategyImpl } from '../strategies';
 import { BinaryProvider } from '../binary';
 import { Executer } from '../core';
+import { parseJson } from '../utils';
 
 interface IBinary {
   autoDownload: boolean;
@@ -31,17 +32,11 @@ export class Ytdlp {
   async getInfo<T extends InfoOptions>(
     url: string,
     options?: T
-  ): Promise<
-    T['mode'] extends 'perVideo'
-    ? VideoInfo
-    : T['mode'] extends 'singleJson'
-    ? PlaylistInfo
-    : FlatPlaylistInfo
-  > {
+  ): Promise<InfoResult<T>> {
     const paths = await this.binaryProvider.getPaths();
     const executer = new Executer(paths?.ytdlp!);
     const command = new InfoStrategyImpl().buildCommand(url, options);
     const output = await executer.run(command);
-    return JSON.parse(output);
+    return parseJson(output);
   }
 }
