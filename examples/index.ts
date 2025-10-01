@@ -13,8 +13,6 @@ import { Ytdlp } from '../src/api/YtDlp'
 
   // TODO: falta obtener el porcentaje de la obtención de la información
   const info = await ytdlp.getInfo('https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2', {
-    flatPlaylist: true,
-    dumpSingleJson: true
   })
 
   console.log(info)
