@@ -1,4 +1,9 @@
 export interface IArgsOptions {
+
+  sleep?: {
+    min?: number;
+    max?: number;
+  }
   // General Options
   printHelp?: boolean;
   printVersion?: boolean;
@@ -442,6 +447,7 @@ interface Subtitles {
 
 export interface FlatVideoInfo {
   id: string;
+  _type: 'playlist';
   entries: { id: string; url: string }[];
 }
 
@@ -650,6 +656,16 @@ interface InfoOptionsBase {
 
   /** Desactiva todas las cookies. */
   noCookies?: boolean;
+
+  /** Esperar entre peticiones. */
+  sleep?: {
+
+    /** Mínimo de segundos a esperar entre peticiones. */
+    min?: number;
+
+    /** Máximo de segundos a esperar entre peticiones.*/
+    max?: number;
+  }
 }
 
 /**
@@ -657,7 +673,10 @@ interface InfoOptionsBase {
  */
 export interface InfoOptionsPerVideo extends InfoOptionsBase {
   dumpSingleJson?: false;
+
   flatPlaylist?: false;
+
+  noPlaylist?: false;
 }
 
 /**
@@ -670,6 +689,8 @@ export interface InfoOptionsSingleJson extends InfoOptionsBase {
   dumpSingleJson: true;
 
   flatPlaylist?: boolean;
+
+  noPlaylist?: false;
 }
 
 // Caso 4: Lista plana (solo IDs/URLs básicos) de ingleJson.
@@ -681,6 +702,18 @@ export interface InfoOptionsSingleFlat extends InfoOptionsBase {
 
   /** Si es `true`, devuelve una lista plana con info limitada de la playlist. */
   flatPlaylist: true;
+
+  noPlaylist?: false;
+}
+
+export interface InfoIgnorePlaylist extends InfoOptionsBase {
+  /**
+   * Ignora la playlist
+   */
+  noPlaylist?: true;
+
+  dumpSingleJson?: false;
+  flatPlaylist?: false;
 }
 
 
@@ -695,10 +728,22 @@ export type InfoResult<T> =
   T extends InfoOptionsPerVideo ? InfoResultMap["VideoInfo"] :
   T extends InfoOptionsSingleJson ? InfoResultMap["dumpSingleJson"] :
   T extends InfoOptionsSingleFlat ? InfoResultMap["flatPlaylist"] :
-  never;
+  T extends InfoIgnorePlaylist ? InfoResultMap["VideoInfo"] :
+  never
 
 interface InfoResultMap {
-  VideoInfo: VideoInfo;
+
+  VideoInfo: VideoInfo | {
+    id: string;
+    _type: string;
+    entries: VideoInfo[];
+  };
+
   dumpSingleJson: PlaylistInfo;
-  flatPlaylist: FlatPlayList[];
+
+  flatPlaylist: {
+    id: string;
+    _type: string;
+    entries: FlatPlayList[];
+  };
 }

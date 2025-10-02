@@ -2,7 +2,7 @@ import type { InfoOptions, InfoResult } from '../interface';
 import { InfoStrategyImpl } from '../strategies';
 import { BinaryProvider } from '../binary';
 import { Executer } from '../core';
-import { parseJson } from '../utils';
+import { parseJson, UniqueIdGenerator } from '../utils';
 
 interface IBinary {
   autoDownload: boolean;
@@ -35,8 +35,24 @@ export class Ytdlp {
   ): Promise<InfoResult<T>> {
     const paths = await this.binaryProvider.getPaths();
     const executer = new Executer(paths?.ytdlp!);
+
     const command = new InfoStrategyImpl().buildCommand(url, options);
+
     const output = await executer.run(command);
-    return parseJson(output);
+
+    // -----
+    const parsed = parseJson(output);
+
+    const resul: any = {};
+
+    if (parsed?.length > 0) {
+      resul['id'] = UniqueIdGenerator.hex(16);
+      resul['_type'] = 'playlist';
+      resul['entries'] = parsed;
+
+      return resul;
+    }
+
+    return parsed;
   }
 }

@@ -16,41 +16,43 @@ export class Executer extends EventEmitter {
     passThrough?: PassThrough,
   ): Promise<string> {
     console.log(this.binaryPath, args)
-    return new Promise((resolve, reject) => {
-      const proc = spawn(this.binaryPath, args);
 
-      let output = '';
-      let error = '';
+    return Promise.resolve('')
+    // return new Promise((resolve, reject) => {
+    //   const proc = spawn(this.binaryPath, args);
 
-      if (passThrough) {
-        proc.stdout.pipe(passThrough);
-        proc.stderr.pipe(passThrough);
-      }
+    //   let output = '';
+    //   let error = '';
 
-      proc.stdout.on('data', (data) => {
-        if (passThrough) return;
-        output += data.toString();
-        this.emit('progress', data.toString());
-      });
+    //   if (passThrough) {
+    //     proc.stdout.pipe(passThrough);
+    //     proc.stderr.pipe(passThrough);
+    //   }
 
-      proc.stderr.on('data', (data) => {
-        if (passThrough) return;
-        error += data.toString();
-        this.emit('error', data.toString());
-      });
+    //   proc.stdout.on('data', (data) => {
+    //     if (passThrough) return;
+    //     output += data.toString();
+    //     this.emit('progress', data.toString());
+    //   });
 
-      proc.on('close', (code) => {
-        if (code === 0) {
-          resolve(output.trim());
-        } else {
-          console.log({ error })
-          reject(YtdlpError.exec(error || `yt-dlp exited with code ${code}`));
-        }
-      });
+    //   proc.stderr.on('data', (data) => {
+    //     if (passThrough) return;
+    //     error += data.toString();
+    //     this.emit('error', data.toString());
+    //   });
 
-      proc.on('error', (err) => {
-        reject(YtdlpError.exec(err.message));
-      });
-    });
+    //   proc.on('close', (code) => {
+    //     if (code === 0) {
+    //       resolve(output.trim());
+    //     } else {
+    //       console.log({ error })
+    //       reject(YtdlpError.exec(error || `yt-dlp exited with code ${code}`));
+    //     }
+    //   });
+
+    //   proc.on('error', (err) => {
+    //     reject(YtdlpError.exec(err.message));
+    //   });
+    // });
   }
 }

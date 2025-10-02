@@ -8,9 +8,14 @@ export interface InfoStrategy {
 export class InfoStrategyImpl implements InfoStrategy {
   buildCommand(url: string, options: InfoOptions = {}): string[] {
 
+    const optionMap = {
+      'sleep.min': 'sleepInterval',
+      'sleep.max': 'maxSleepInterval',
+    };
+
     return new CommandBuilder()
       .setFlag('--dump-json', !options.dumpSingleJson)
-      .setOptions(options)
+      .setMappedOptions(options, optionMap)
       .activeQuiet()
       .setUrl(url)
       .build();

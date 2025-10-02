@@ -1,0 +1,509 @@
+[
+  {
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "Y2Vnjmb2gFs",
+    "url": "https://www.youtube.com/watch?v=Y2Vnjmb2gFs",
+    "title": "PARTIDO EN DOS - LA UNICA TROPICAL 2024",
+    "description": null,
+    "duration": 220.0,
+    "channel_id": "UCTcKzq5gGubbo0jXKZjL9Yg",
+    "channel": "La Unica Tropical",
+    "channel_url": "https://www.youtube.com/channel/UCTcKzq5gGubbo0jXKZjL9Yg",
+    "uploader": "La Unica Tropical",
+    "uploader_id": null,
+    "uploader_url": null,
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/Y2Vnjmb2gFs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLABJiV9706kNwwRubLAWl9sECWYIA",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/Y2Vnjmb2gFs/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC-QrWjvL9PbT7gzY9tsuNN2osn_w",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/Y2Vnjmb2gFs/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBTHUIIkgqHpSQ_aUwxIWiMGDU9ng",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/Y2Vnjmb2gFs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAwvGRe2NrGB0hUQjD_HdlZ5LWQ0Q",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=Y2Vnjmb2gFs",
+    "original_url": "https://www.youtube.com/watch?v=Y2Vnjmb2gFs",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1832,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1832,
+    "epoch": 1759203312,
+    "duration_string": "3:40",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+
+{
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "5KTlHuNTwQA",
+    "url": "https://www.youtube.com/watch?v=5KTlHuNTwQA",
+    "title": "Coraz\u00f3n Serrano - Mix Poco Yo - Estadio San Marcos - 32 Aniversario - Camino A Un Sue\u00f1o",
+    "description": null,
+    "duration": 401.0,
+    "channel_id": "UCF-1xB_VwVjN4lUPsh8PryQ",
+    "channel": "Coraz\u00f3n Serrano",
+    "channel_url": "https://www.youtube.com/channel/UCF-1xB_VwVjN4lUPsh8PryQ",
+    "uploader": "Coraz\u00f3n Serrano",
+    "uploader_id": null,
+    "uploader_url": null,
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/5KTlHuNTwQA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCx2XEpnMdGGdU7FDh7EWhIaO7ITA",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/5KTlHuNTwQA/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCGFJSjIWZ_e0p8muGEy8-9-STTKQ",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/5KTlHuNTwQA/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA5bDfCvutXw3qGeWScxVB4RYMMSA",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/5KTlHuNTwQA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCxonShX7oj0ciPYwYF8ngdStmwOg",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=5KTlHuNTwQA",
+    "original_url": "https://www.youtube.com/watch?v=5KTlHuNTwQA",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1833,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1833,
+    "epoch": 1759203312,
+    "duration_string": "6:41",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+
+
+{
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "_IbeMa-GOmA",
+    "url": "https://www.youtube.com/watch?v=_IbeMa-GOmA",
+    "title": "Kid Buu - Eddie Santiago (Que Locura Enamorarme De Ti) COVER",
+    "description": null,
+    "duration": 175.0,
+    "channel_id": "UC-ng_3NDXSSk8t-DpKka06Q",
+    "channel": "Kid Buu",
+    "channel_url": "https://www.youtube.com/channel/UC-ng_3NDXSSk8t-DpKka06Q",
+    "uploader": "Kid Buu",
+    "uploader_id": null,
+    "uploader_url": null,
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/_IbeMa-GOmA/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AHOBYACgAqKAgwIABABGHAgEyh_MA8=&rs=AOn4CLAW_J-tfmO2U17mEem7AWHO5FlGmQ",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/_IbeMa-GOmA/hqdefault.jpg?sqp=-oaymwE1CMQBEG5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AHOBYACgAqKAgwIABABGHAgEyh_MA8=&rs=AOn4CLBWtuXPxBM5L0MAiF4QnhJ0JmXwwg",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/_IbeMa-GOmA/hqdefault.jpg?sqp=-oaymwE2CPYBEIoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBzgWAAoAKigIMCAAQARhwIBMofzAP&rs=AOn4CLDg8oNB7p-1h-xl08oKqLIhZx3tVQ",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/_IbeMa-GOmA/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBzgWAAoAKigIMCAAQARhwIBMofzAP&rs=AOn4CLAbXwn3DCl6-yg3CJJ-0JBmJeIYQA",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=_IbeMa-GOmA",
+    "original_url": "https://www.youtube.com/watch?v=_IbeMa-GOmA",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1834,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1834,
+    "epoch": 1759203312,
+    "duration_string": "2:55",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+{
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "R1U8m7ERAPs",
+    "url": "https://www.youtube.com/watch?v=R1U8m7ERAPs",
+    "title": "FANTASMAS",
+    "description": null,
+    "duration": 219.0,
+    "channel_id": "UC0-C7nTZ33LHrbn-Cpt5ogw",
+    "channel": "Max Vald\u00e9s Naranjo",
+    "channel_url": "https://www.youtube.com/channel/UC0-C7nTZ33LHrbn-Cpt5ogw",
+    "uploader": "Max Vald\u00e9s Naranjo",
+    "uploader_id": null,
+    "uploader_url": null,
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/R1U8m7ERAPs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCTLqttMsgtxMFM27tAp9rTS3-mcg",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/R1U8m7ERAPs/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCpDTNA_W9r38K2ArDK9H1zfsxfzg",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/R1U8m7ERAPs/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLARGtRLaCsvsAbjpMPuJa7GKWu4qA",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/R1U8m7ERAPs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCx6GyCrceb4sq7vQt5JABnoWsIdA",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=R1U8m7ERAPs",
+    "original_url": "https://www.youtube.com/watch?v=R1U8m7ERAPs",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1835,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1835,
+    "epoch": 1759203312,
+    "duration_string": "3:39",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+{
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "vxxfcaoNJ8E",
+    "url": "https://www.youtube.com/watch?v=vxxfcaoNJ8E",
+    "title": "Tattoo - La \u00danica Tropical (Sesi\u00f3n en Vivo)",
+    "description": null,
+    "duration": 218.0,
+    "channel_id": "UCTcKzq5gGubbo0jXKZjL9Yg",
+    "channel": "La Unica Tropical",
+    "channel_url": "https://www.youtube.com/channel/UCTcKzq5gGubbo0jXKZjL9Yg",
+    "uploader": "La Unica Tropical",
+    "uploader_id": null,
+    "uploader_url": null,
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/vxxfcaoNJ8E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD15RORVIt9K0bSSA7XhbL1CA3YYA",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/vxxfcaoNJ8E/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWNVIkZOi-OY3b1TGryqmsjbRxMw",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/vxxfcaoNJ8E/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCm2rqn37ITH2KUQLi-AYZpsqSrLg",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/vxxfcaoNJ8E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAOKHp8XlKKbUBl2Neu8Fj9O0TqDw",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=vxxfcaoNJ8E",
+    "original_url": "https://www.youtube.com/watch?v=vxxfcaoNJ8E",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1836,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1836,
+    "epoch": 1759203312,
+    "duration_string": "3:38",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+{
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "7_cN0uQApYU",
+    "url": "https://www.youtube.com/watch?v=7_cN0uQApYU",
+    "title": "Coraz\u00f3n Serrano Ft. Dina Paucar Mix Dina: Todo Empez\u00f3/Que Lindos Son Tus Ojos (Acceso Al Coraz\u00f3n II)",
+    "description": null,
+    "duration": 401.0,
+    "channel_id": "UCF-1xB_VwVjN4lUPsh8PryQ",
+    "channel": "Coraz\u00f3n Serrano",
+    "channel_url": "https://www.youtube.com/channel/UCF-1xB_VwVjN4lUPsh8PryQ",
+    "uploader": "Coraz\u00f3n Serrano",
+    "uploader_id": null,
+    "uploader_url": null,
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/7_cN0uQApYU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCAhbTsWYjhxQtM6RY113UU5qknQA",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/7_cN0uQApYU/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCidvMPDv3bj84rQE7p2gksMLo12A",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/7_cN0uQApYU/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCAsuxqxV9dN8x7SJJigCXRj4MKbA",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/7_cN0uQApYU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA5E-KhuYjoCK3500jGeDrfF4w2uw",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=7_cN0uQApYU",
+    "original_url": "https://www.youtube.com/watch?v=7_cN0uQApYU",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1837,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1837,
+    "epoch": 1759203312,
+    "duration_string": "6:41",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+{
+    "_type": "url",
+    "ie_key": "Youtube",
+    "id": "r_GyfRSQtMU",
+    "url": "https://www.youtube.com/watch?v=r_GyfRSQtMU",
+    "title": "\u00a1Bailamos Como Los Animalitos! \ud83e\udd80\ud83d\udc1f Canciones Infantiles de Animales (40 Min) | Plim Plim",
+    "description": null,
+    "duration": 2357.0,
+    "channel_id": "UCYQo8CdhXD22qfwUBUw591Q",
+    "channel": "El Payaso Plim Plim",
+    "channel_url": "https://www.youtube.com/channel/UCYQo8CdhXD22qfwUBUw591Q",
+    "uploader": "El Payaso Plim Plim",
+    "uploader_id": "@elcanaldePlimPlim",
+    "uploader_url": "https://www.youtube.com/@elcanaldePlimPlim",
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/r_GyfRSQtMU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBdxs-03oL2zZY2e21J7tMuh8MmyQ",
+        "height": 94,
+        "width": 168
+      },
+      {
+        "url": "https://i.ytimg.com/vi/r_GyfRSQtMU/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCDXOvq--KYAodzycLf8FV5qMQQ1Q",
+        "height": 110,
+        "width": 196
+      },
+      {
+        "url": "https://i.ytimg.com/vi/r_GyfRSQtMU/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCr96SPzG6Zf4_ZBPwMS62A32KAvQ",
+        "height": 138,
+        "width": 246
+      },
+      {
+        "url": "https://i.ytimg.com/vi/r_GyfRSQtMU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDObbPRToND6XfxeUnA7gvxpIoQ4Q",
+        "height": 188,
+        "width": 336
+      }
+    ],
+    "timestamp": null,
+    "release_timestamp": null,
+    "availability": null,
+    "view_count": null,
+    "live_status": null,
+    "channel_is_verified": null,
+    "__x_forwarded_for_ip": null,
+    "webpage_url": "https://www.youtube.com/watch?v=r_GyfRSQtMU",
+    "original_url": "https://www.youtube.com/watch?v=r_GyfRSQtMU",
+    "webpage_url_basename": "watch",
+    "webpage_url_domain": "youtube.com",
+    "extractor": "youtube",
+    "extractor_key": "Youtube",
+    "playlist_count": 1838,
+    "playlist": "Mix - Mar de copas - Suna // Letra",
+    "playlist_id": "RD39o8nMOd3oY",
+    "playlist_title": "Mix - Mar de copas - Suna // Letra",
+    "playlist_uploader": null,
+    "playlist_uploader_id": null,
+    "playlist_channel": null,
+    "playlist_channel_id": null,
+    "playlist_webpage_url": "https://www.youtube.com/watch?v=qgbsuCCGQkE&list=RD39o8nMOd3oY&index=2",
+    "n_entries": 1838,
+    "playlist_index": 1838,
+    "__last_playlist_index": 1838,
+    "playlist_autonumber": 1838,
+    "epoch": 1759203312,
+    "duration_string": "39:17",
+    "release_year": null,
+    "_version": {
+      "version": "2025.09.26",
+      "current_git_head": null,
+      "release_git_head": "12b57d2858845c0c7fb33bf9aa8ed7be6905535d",
+      "repository": "yt-dlp/yt-dlp"
+    }
+  }
+]
