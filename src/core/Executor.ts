@@ -17,42 +17,45 @@ export class Executer extends EventEmitter {
   ): Promise<string> {
     console.log(this.binaryPath, args)
 
-    return Promise.resolve('')
-    // return new Promise((resolve, reject) => {
-    //   const proc = spawn(this.binaryPath, args);
+    return new Promise((resolve, reject) => {
+      const proc = spawn(this.binaryPath, args);
 
-    //   let output = '';
-    //   let error = '';
+      let output = '';
+      let error = '';
 
-    //   if (passThrough) {
-    //     proc.stdout.pipe(passThrough);
-    //     proc.stderr.pipe(passThrough);
-    //   }
+      if (passThrough) {
+        proc.stdout.pipe(passThrough);
+        proc.stderr.pipe(passThrough);
+      }
 
-    //   proc.stdout.on('data', (data) => {
-    //     if (passThrough) return;
-    //     output += data.toString();
-    //     this.emit('progress', data.toString());
-    //   });
+      proc.stdout.on('data', (data) => {
+        const text = data.toString();
+        if (text.includes('"progress"')) this.emit('progress', text);
+        output += text;
+        if (output.length > 10_000_000) {
+          proc.kill();
+          reject(YtdlpError.exec('Output too large'));
+        }
+      });
 
-    //   proc.stderr.on('data', (data) => {
-    //     if (passThrough) return;
-    //     error += data.toString();
-    //     this.emit('error', data.toString());
-    //   });
+      proc.stderr.on('data', (data) => {
+        if (passThrough) return;
+        error += data.toString();
+        this.emit('error', data.toString());
+      });
 
-    //   proc.on('close', (code) => {
-    //     if (code === 0) {
-    //       resolve(output.trim());
-    //     } else {
-    //       console.log({ error })
-    //       reject(YtdlpError.exec(error || `yt-dlp exited with code ${code}`));
-    //     }
-    //   });
+      proc.on('close', (code) => {
+        if (code === 0) {
+          resolve(output.trim());
+        } else {
+          console.log({ error })
+          reject(YtdlpError.exec(error || `yt-dlp exited with code ${code}`));
+        }
+      });
 
-    //   proc.on('error', (err) => {
-    //     reject(YtdlpError.exec(err.message));
-    //   });
-    // });
+      proc.on('error', (err) => {
+        reject(YtdlpError.exec(err.message));
+      });
+    });
   }
 }

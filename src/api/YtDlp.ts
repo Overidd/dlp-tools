@@ -23,36 +23,36 @@ export class Ytdlp {
       ytdlpPath: options.binary?.ytDlpPath,
       ffmpegPath: options.binary?.ffmpegPath,
     });
-    // debug: config.debug || false,
 
     // Initial check
     this.binaryProvider.checkInstallation();
   }
 
+  /**
+   * Obtiene información detallada sobre un video o playlist de YouTube utilizando yt-dlp.
+   * 
+   * @param url La URL del video o playlist de YouTube.
+   * @param options Opciones adicionales para la consulta de información. Por defecto, la opción `dumpSingleJson` está establecida en `true`.
+   * @returns Un objeto con la información obtenida. Si la respuesta es una lista, se retorna un objeto con el tipo 'playlist' y sus entradas.
+   */
   async getInfo<T extends InfoOptions>(
     url: string,
     options?: T
   ): Promise<InfoResult<T>> {
     const paths = await this.binaryProvider.getPaths();
     const executer = new Executer(paths?.ytdlp!);
-
     const command = new InfoStrategyImpl().buildCommand(url, options);
-
     const output = await executer.run(command);
 
-    // -----
+    /*=======================*/
     const parsed = parseJson(output);
-
     const resul: any = {};
-
-    if (parsed?.length > 0) {
+    if (Array.isArray(parsed)) {
       resul['id'] = UniqueIdGenerator.hex(16);
       resul['_type'] = 'playlist';
       resul['entries'] = parsed;
-
       return resul;
     }
-
     return parsed;
   }
 }

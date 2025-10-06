@@ -31,6 +31,8 @@ export class CommandBuilder {
   }
 
   setMappedOptions(options: Record<string, any>, map: Record<string, string>): this {
+    this.options = { ...this.options, ...options };
+
     for (const [path, flag] of Object.entries(map)) {
 
       const value = path.split('.').reduce((acc, key) => acc?.[key], options);

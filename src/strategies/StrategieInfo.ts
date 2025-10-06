@@ -15,6 +15,7 @@ export class InfoStrategyImpl implements InfoStrategy {
 
     return new CommandBuilder()
       .setFlag('--dump-json', !options.dumpSingleJson)
+      .setFlag('--skip-download', true)
       .setMappedOptions(options, optionMap)
       .activeQuiet()
       .setUrl(url)
