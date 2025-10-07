@@ -335,7 +335,7 @@ export interface IArgsOptions {
   writePages?: boolean; // --write-pages
 
   // Standard Options
-  listFormats?: boolean; // -F, --list-formats
+  // listFormats?: boolean; // -F, --list-formats
   listThumbnails?: boolean; // --list-thumbnails
 
   // Additional raw options
@@ -608,6 +608,8 @@ export interface FormatOptions<F extends FormatKeyWord>
     type?: TypeOptions[F];
   } | string;
   onProgress?: (p: VideoProgress) => void;
+  onError?: (e: Error) => void;
+  onEnd?: () => void;
 }
 
 export type PipeResponse = {
