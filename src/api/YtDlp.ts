@@ -1,8 +1,9 @@
-import type { InfoOptions, InfoResult } from '../interface';
+import type { FormatKeyWord, FormatOptions, InfoOptions, InfoResult, PipeResponse } from '../interface';
 import { InfoStrategyImpl } from '../strategies';
 import { BinaryProvider } from '../binary';
 import { Executer } from '../core';
 import { parseJson, UniqueIdGenerator } from '../utils';
+import { ChildProcessWithoutNullStreams } from 'node:child_process';
 
 interface IBinary {
   autoDownload: boolean;
@@ -46,13 +47,39 @@ export class Ytdlp {
 
     /*=======================*/
     const parsed = parseJson(output);
-    const resul: any = {};
-    if (Array.isArray(parsed)) {
-      resul['id'] = UniqueIdGenerator.hex(16);
-      resul['_type'] = 'playlist';
-      resul['entries'] = parsed;
-      return resul;
-    }
-    return parsed;
+
+    const result: any = Array.isArray(parsed)
+      ? {
+        id: UniqueIdGenerator.hex(16),
+        _type: 'playlist',
+        entries: parsed,
+      }
+      : parsed as InfoResult<T>;
+
+    return result
   }
+
+  stream<T extends FormatKeyWord>(
+    url: string,
+    options?: FormatOptions<T>
+  ): ChildProcessWithoutNullStreams {
+
+
+
+  }
+
+  async download<T extends FormatKeyWord>(
+    url: string,
+    options?: Omit<FormatOptions<T>, 'onProgress' | 'onError' | 'onEnd'>
+  ): Promise<PipeResponse> {
+
+
+
+  }
+
+  // downloadSync<T extends FormatKeyWord>(
+  //   url: string,
+  //   options?: Omit<FormatOptions<T>, 'onProgress'>
+  // ): string {
+  // }
 }

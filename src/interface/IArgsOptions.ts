@@ -1,3 +1,5 @@
+import { ChildProcessWithoutNullStreams } from "node:child_process";
+
 export interface IArgsOptions {
 
   sleep?: {
@@ -576,11 +578,21 @@ type VideoQuality =
   | 'highest'
   | 'lowest';
 
+type AudioQuality =
+  | 'highest'
+  | 'high'
+  | 'medium'
+  | 'low'
+  | 'lowest';
+
 export type QualityOptions = {
   videoonly: VideoQuality;
   audioonly: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   audioandvideo: 'highest' | 'lowest';
-  mergevideo: VideoQuality;
+  mergevideo: {
+    video: VideoQuality;
+    audio?: AudioQuality;
+  };
 };
 
 export type TypeOptions = {
@@ -612,20 +624,23 @@ export interface FormatOptions<F extends FormatKeyWord>
   onEnd?: () => void;
 }
 
-export type PipeResponse = {
+export interface PipeResponse extends ChildProcessWithoutNullStreams {
+
   promise: Promise<string>;
+
   pipe: (
     destination: NodeJS.WritableStream,
     options?: {
       end?: boolean;
     }
-  ) => NodeJS.WritableStream;
-  pipeAsync: (
+  ) => Promise<NodeJS.WritableStream>;
+
+  pipeSync: (
     destination: NodeJS.WritableStream,
     options?: {
       end?: boolean;
     }
-  ) => Promise<NodeJS.WritableStream>;
+  ) => NodeJS.WritableStream;
 };
 
 export interface FileMetadata {
