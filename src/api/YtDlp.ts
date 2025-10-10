@@ -48,32 +48,29 @@ export class Ytdlp {
     /*=======================*/
     const parsed = parseJson(output);
 
-    const result: any = Array.isArray(parsed)
-      ? {
-        id: UniqueIdGenerator.hex(16),
-        _type: 'playlist',
-        entries: parsed,
-      }
-      : parsed as InfoResult<T>;
+    const result: any = Array.isArray(parsed) ? {
+      id: UniqueIdGenerator.hex(16),
+      _type: 'playlist',
+      entries: parsed,
+    } : parsed as InfoResult<T>;
 
     return result
+  }
+
+  async download<T extends FormatKeyWord>(
+    url: string,
+    options?: FormatOptions<T>
+  ): Promise<void> {
+
+    throw new Error('Method not implemented.');
+
   }
 
   stream<T extends FormatKeyWord>(
     url: string,
     options?: FormatOptions<T>
-  ): ChildProcessWithoutNullStreams {
-
-
-
-  }
-
-  async download<T extends FormatKeyWord>(
-    url: string,
-    options?: Omit<FormatOptions<T>, 'onProgress' | 'onError' | 'onEnd'>
-  ): Promise<PipeResponse> {
-
-
+  ): PipeResponse {
+    throw new Error('Method not implemented.');
 
   }
 

@@ -14,7 +14,11 @@ export class Executer extends EventEmitter {
   run(
     args: string[],
     passThrough?: PassThrough,
+    onProgress?: (data: string) => void,
+    onError?: (error: Error) => void,
+    onEnd?: () => void
   ): Promise<string> {
+    
     console.log(this.binaryPath, args)
 
     return new Promise((resolve, reject) => {

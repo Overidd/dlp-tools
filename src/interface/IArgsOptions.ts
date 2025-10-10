@@ -566,7 +566,7 @@ export interface VideoProgress {
   percentage_str: string;
 }
 
-type VideoQuality =
+export type VideoQuality =
   | '2160p'
   | '1440p'
   | '1080p'
@@ -578,7 +578,7 @@ type VideoQuality =
   | 'highest'
   | 'lowest';
 
-type AudioQuality =
+export type AudioQuality =
   | 'highest'
   | 'high'
   | 'medium'
@@ -587,8 +587,8 @@ type AudioQuality =
 
 export type QualityOptions = {
   videoonly: VideoQuality;
-  audioonly: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  audioandvideo: 'highest' | 'lowest';
+  audioonly: AudioQuality;
+  // audioandvideo: 'highest' | 'lowest';
   mergevideo: {
     video: VideoQuality;
     audio?: AudioQuality;
@@ -597,7 +597,7 @@ export type QualityOptions = {
 
 export type TypeOptions = {
   videoonly: 'mp4' | 'webm';
-  audioandvideo: 'mp4' | 'webm';
+  // audioandvideo: 'mp4' | 'webm';
   mergevideo: 'mkv' | 'mp4' | 'ogg' | 'webm' | 'flv';
   audioonly:
   | 'aac'
@@ -612,13 +612,57 @@ export type TypeOptions = {
 
 export type FormatKeyWord = keyof QualityOptions;
 
-export interface FormatOptions<F extends FormatKeyWord>
+// export interface FormatThumbnailOptions {
+//   filter: 'thumbnail';
+
+//   /** Descargar todas las miniaturas disponibles, no solo la principal */
+//   all?: boolean;
+
+//   /** Escoger una calidad específica (ej: 0 = más baja, -1 = más alta) */
+//   quality?: number;
+
+//   /** Convertir la miniatura a un formato diferente (jpg, png, webp) */
+//   convertTo?: 'jpg' | 'png' | 'webp';
+
+//   outputName?: string;
+// }
+// TODO: creo que seria mejor obtener las url y descargar con fetch y a la vez convertirlo en un formato.
+
+export interface FormatSubtitleOptions {
+  filter: 'subtitle';
+
+  /** Idiomas de los subtítulos (pueden ser múltiples) */
+  language?: string | string[];
+
+  /** Convertir el formato del subtítulo */
+  convertTo?: 'srt' | 'vtt' | 'ass' | 'lrc';
+
+  outputName?: string;
+}
+
+
+export interface FormatAudioAndVideoOptions {
+  filter: 'audioandvideo';
+  formatIdVideo?: string;
+  formatIdAudio?: string;
+}
+
+export interface FormatManualOptions<F extends FormatKeyWord> {
+  filter: F;
+  quality?: QualityOptions[F];
+  type?: TypeOptions[F];
+}
+
+export interface FormatOptions<F extends FormatKeyWord = FormatKeyWord>
   extends Omit<IArgsOptions, 'format' | 'progressTemplate'> {
-  format?: | {
-    filter: F;
-    quality?: QualityOptions[F];
-    type?: TypeOptions[F];
-  } | string;
+
+  format?:
+  | string
+  | FormatThumbnailOptions
+  | FormatSubtitleOptions
+  | FormatAudioAndVideoOptions
+  | FormatManualOptions<F>;
+
   onProgress?: (p: VideoProgress) => void;
   onError?: (e: Error) => void;
   onEnd?: () => void;
@@ -655,6 +699,7 @@ export interface GetFileOptions<F extends FormatKeyWord>
   metadata?: FileMetadata;
 }
 
+//* ============== 
 /**
  * Opciones base (comunes en cualquier modo).
  */

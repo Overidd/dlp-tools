@@ -19,7 +19,7 @@ import { Ytdlp } from '../src/api/YtDlp'
   console.log(info)
 
   //* ==================================================== 
-  const output = await ytdlp.download(
+  await ytdlp.download(
     'https://youtu.be/6bIimzl5NYM?si=l3AWo2Fh4vKwEGLp',
     {
       format: {
@@ -27,6 +27,7 @@ import { Ytdlp } from '../src/api/YtDlp'
         // quality: "720p",
         type: "mp4",
       },
+
       output: "./video/%(title)s.%(ext)s",
 
       onProgress: (progress) => {
@@ -43,15 +44,11 @@ import { Ytdlp } from '../src/api/YtDlp'
     }
   );
 
-  console.log(output);
-
   //* ==================================================== 
   const st = createWriteStream('video.mp4');
   const stream = ytdlp.stream('https://youtu.be/PO9GfBBjy7Y', {
     format: {
-      filter: 'mergevideo',
-      quality: '1440p',
-      // type: 'mp3',
+      filter: 'audioandvideo',
     },
 
     onProgress: (progress) => {
@@ -65,10 +62,7 @@ import { Ytdlp } from '../src/api/YtDlp'
     },
   });
 
-  //? ====================
   await stream.pipe(st);
-
-  //? ====================
 
   stream.stderr.on('data', (err) => {
     console.error(err)
