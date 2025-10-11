@@ -645,12 +645,30 @@ export interface FormatAudioAndVideoOptions {
   filter: 'audioandvideo';
   formatIdVideo?: string;
   formatIdAudio?: string;
+  playlist?: playlistOptions;
 }
 
 export interface FormatManualOptions<F extends FormatKeyWord> {
   filter: F;
   quality?: QualityOptions[F];
   type?: TypeOptions[F];
+
+  playlist?: playlistOptions;
+}
+
+interface playlistOptions {
+  items?: string;
+
+  /** IDs a incluir o excluir */
+  ids?: {
+    include?: string[];
+    exclude?: string[];
+  };
+
+  titleFilter?: {
+    match?: string;
+    reject?: string;
+  };
 }
 
 export interface FormatOptions<F extends FormatKeyWord = FormatKeyWord>
@@ -658,7 +676,7 @@ export interface FormatOptions<F extends FormatKeyWord = FormatKeyWord>
 
   format?:
   | string
-  | FormatThumbnailOptions
+  // | FormatThumbnailOptions
   | FormatSubtitleOptions
   | FormatAudioAndVideoOptions
   | FormatManualOptions<F>;
