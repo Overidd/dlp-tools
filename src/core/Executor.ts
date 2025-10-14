@@ -14,11 +14,8 @@ export class Executer extends EventEmitter {
   run(
     args: string[],
     passThrough?: PassThrough,
-    onProgress?: (data: string) => void,
-    onError?: (error: Error) => void,
-    onEnd?: () => void
   ): Promise<string> {
-    
+
     console.log(this.binaryPath, args)
 
     return new Promise((resolve, reject) => {
@@ -34,7 +31,9 @@ export class Executer extends EventEmitter {
 
       proc.stdout.on('data', (data) => {
         const text = data.toString();
+
         if (text.includes('"progress"')) this.emit('progress', text);
+
         output += text;
         if (output.length > 10_000_000) {
           proc.kill();

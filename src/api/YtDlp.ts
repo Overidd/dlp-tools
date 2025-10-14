@@ -1,5 +1,5 @@
 import type { FormatKeyWord, FormatOptions, InfoOptions, InfoResult, PipeResponse } from '../interface';
-import { InfoStrategyImpl } from '../strategies';
+import { InfoStrategy } from '../strategies';
 import { BinaryProvider } from '../binary';
 import { Executer } from '../core';
 import { parseJson, UniqueIdGenerator } from '../utils';
@@ -42,7 +42,7 @@ export class Ytdlp {
   ): Promise<InfoResult<T>> {
     const paths = await this.binaryProvider.getPaths();
     const executer = new Executer(paths?.ytdlp!);
-    const command = new InfoStrategyImpl().buildCommand(url, options);
+    const command = new InfoStrategy().buildCommand(url, options);
     const output = await executer.run(command);
 
     /*=======================*/
@@ -61,6 +61,8 @@ export class Ytdlp {
     url: string,
     options?: FormatOptions<T>
   ): Promise<void> {
+    const paths = await this.binaryProvider.getPaths();
+    const executer = new Executer(paths?.ytdlp!);
 
     throw new Error('Method not implemented.');
 
@@ -70,8 +72,14 @@ export class Ytdlp {
     url: string,
     options?: FormatOptions<T>
   ): PipeResponse {
-    throw new Error('Method not implemented.');
+    const paths = this.binaryProvider.getPathsSync();
+    const executer = new Executer(paths?.ytdlp!);
 
+
+    const command = new InfoStrategy().buildCommand(url, options);
+    const output = await executer.run(command);
+
+    throw new Error('Method not implemented.');
   }
 
   // downloadSync<T extends FormatKeyWord>(

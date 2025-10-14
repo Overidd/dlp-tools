@@ -13,7 +13,7 @@ import { Ytdlp } from '../src/api/YtDlp'
 
   const info = await ytdlp.getInfo('https://www.youtube.com/watch?v=39o8nMOd3oY&list=RD39o8nMOd3oY&start_radio=1', {
     // noPlaylist
-
+    flatPlaylist
   })
 
   console.log(info)
@@ -49,6 +49,7 @@ import { Ytdlp } from '../src/api/YtDlp'
   const stream = ytdlp.stream('https://youtu.be/PO9GfBBjy7Y', {
     format: {
       filter: 'audioandvideo',
+
     },
 
     onProgress: (progress) => {
@@ -80,3 +81,4 @@ import { Ytdlp } from '../src/api/YtDlp'
 })()
 // --ignore-errors --no-warnings
 // '--live-from-start';
+

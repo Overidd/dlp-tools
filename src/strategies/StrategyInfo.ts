@@ -1,11 +1,11 @@
 import { CommandBuilder } from '../core';
 import { InfoOptions } from '../interface';
 
-export interface InfoStrategy {
+export interface InfoStrategyBase {
   buildCommand(url: string, options?: any): string[];
 }
 
-export class InfoStrategyImpl implements InfoStrategy {
+export class InfoStrategy implements InfoStrategyBase {
   buildCommand(url: string, options: InfoOptions = {}): string[] {
 
     const optionMap = {

@@ -1,2 +1,3 @@
 
-export * from './StrategieInfo';
+export * from './StrategyInfo';
+export * from './StrategySteam';

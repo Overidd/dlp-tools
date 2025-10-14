@@ -585,15 +585,33 @@ export type AudioQuality =
   | 'low'
   | 'lowest';
 
-export type QualityOptions = {
-  videoonly: VideoQuality;
-  audioonly: AudioQuality;
-  // audioandvideo: 'highest' | 'lowest';
-  mergevideo: {
-    video: VideoQuality;
-    audio?: AudioQuality;
-  };
-};
+// 🎬 Formatos de video comunes
+export type FormatIdVideo =
+  | '160' // 144p
+  | '133' // 240p
+  | '134' // 360p
+  | '135' // 480p
+  | '136' // 720p
+  | '137' // 1080p
+  | '264' // 1440p
+  | '266' // 2160p (4K)
+  | '298' // 1080p60
+  | '299' // 1080p60 (alto bitrate)
+  | '400' // 1440p60
+  | '401' // 2160p60 (4K)
+  | 'bv*' // video best
+  | 'wv*'; // video worst
+
+// 🎧 Formatos de audio comunes
+export type FormatIdAudio =
+  | '249' // webm tiny (50k)
+  | '250' // webm tiny (70k)
+  | '251' // webm medium (160k)
+  | '140' // m4a medium (128k)
+  | '139' // m4a low (48k)
+  | 'ba'  // best audio
+  | 'wa'; // worst audio
+
 
 export type TypeOptions = {
   videoonly: 'mp4' | 'webm';
@@ -610,7 +628,20 @@ export type TypeOptions = {
   | 'alac';
 };
 
-export type FormatKeyWord = keyof QualityOptions;
+export interface playlistOptions {
+  items?: string[];
+
+  /** IDs a incluir o excluir */
+  ids?: {
+    include?: string[];
+    exclude?: string[];
+  };
+
+  titleFilter?: {
+    match?: string;
+    reject?: string;
+  };
+}
 
 // export interface FormatThumbnailOptions {
 //   filter: 'thumbnail';
@@ -640,35 +671,30 @@ export interface FormatSubtitleOptions {
   outputName?: string;
 }
 
-
 export interface FormatAudioAndVideoOptions {
   filter: 'audioandvideo';
-  formatIdVideo?: string;
-  formatIdAudio?: string;
+  formatVideo?: FormatIdVideo;
+  formatAudio?: FormatIdAudio;
   playlist?: playlistOptions;
 }
+
+export type QualityOptions = {
+  videoonly: VideoQuality;
+  audioonly: AudioQuality;
+  // audioandvideo: 'highest' | 'lowest';
+  mergevideo: {
+    video: VideoQuality;
+    audio?: AudioQuality;
+  };
+};
+
+export type FormatKeyWord = keyof QualityOptions;
 
 export interface FormatManualOptions<F extends FormatKeyWord> {
   filter: F;
   quality?: QualityOptions[F];
   type?: TypeOptions[F];
-
   playlist?: playlistOptions;
-}
-
-interface playlistOptions {
-  items?: string;
-
-  /** IDs a incluir o excluir */
-  ids?: {
-    include?: string[];
-    exclude?: string[];
-  };
-
-  titleFilter?: {
-    match?: string;
-    reject?: string;
-  };
 }
 
 export interface FormatOptions<F extends FormatKeyWord = FormatKeyWord>
