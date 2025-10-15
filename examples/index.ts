@@ -13,7 +13,7 @@ import { Ytdlp } from '../src/api/YtDlp'
 
   const info = await ytdlp.getInfo('https://www.youtube.com/watch?v=39o8nMOd3oY&list=RD39o8nMOd3oY&start_radio=1', {
     // noPlaylist
-    flatPlaylist
+    // flatPlaylist
   })
 
   console.log(info)
@@ -24,8 +24,6 @@ import { Ytdlp } from '../src/api/YtDlp'
     {
       format: {
         filter: "audioandvideo",
-        // quality: "720p",
-        type: "mp4",
       },
 
       output: "./video/%(title)s.%(ext)s",

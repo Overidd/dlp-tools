@@ -19,7 +19,9 @@ export class Executer extends EventEmitter {
     console.log(this.binaryPath, args)
 
     return new Promise((resolve, reject) => {
-      const proc = spawn(this.binaryPath, args);
+      const proc = spawn(this.binaryPath, args, {
+        killSignal: 'SIGKILL',
+      });
 
       let output = '';
       let error = '';

@@ -1,9 +1,31 @@
-import type { FormatKeyWord, FormatOptions, InfoOptions, InfoResult, PipeResponse } from '../interface';
-import { InfoStrategy } from '../strategies';
-import { BinaryProvider } from '../binary';
-import { Executer } from '../core';
-import { parseJson, UniqueIdGenerator } from '../utils';
-import { ChildProcessWithoutNullStreams } from 'node:child_process';
+import { PassThrough } from 'node:stream';
+
+import type {
+  FormatKeyWord,
+  FormatOptions,
+  InfoOptions,
+  InfoResult,
+  PipeResponse
+} from '../interface';
+
+import {
+  parseJson,
+  stringToProgress,
+  UniqueIdGenerator
+} from '../utils';
+
+import {
+  InfoStrategy,
+  StrategyDownload
+} from '../strategies';
+
+import {
+  BinaryProvider
+} from '../binary';
+
+import {
+  Executer
+} from '../core';
 
 interface IBinary {
   autoDownload: boolean;
@@ -45,9 +67,7 @@ export class Ytdlp {
     const command = new InfoStrategy().buildCommand(url, options);
     const output = await executer.run(command);
 
-    /*=======================*/
     const parsed = parseJson(output);
-
     const result: any = Array.isArray(parsed) ? {
       id: UniqueIdGenerator.hex(16),
       _type: 'playlist',
@@ -60,12 +80,27 @@ export class Ytdlp {
   async download<T extends FormatKeyWord>(
     url: string,
     options?: FormatOptions<T>
-  ): Promise<void> {
+  ): Promise<string> {
     const paths = await this.binaryProvider.getPaths();
     const executer = new Executer(paths?.ytdlp!);
+    const command = new StrategyDownload().buildCommand(
+      url, paths?.ffmpeg!, options
+    );
 
-    throw new Error('Method not implemented.');
+    executer.on('progress', (data) => {
+      const progress = stringToProgress(data);
+      options?.onProgress?.(progress);
+    });
 
+    executer.on('error', (error) => {
+      options?.onError?.(error);
+    });
+
+    executer.on('end', () => {
+      options?.onEnd?.();
+    });
+
+    return executer.run(command);
   }
 
   stream<T extends FormatKeyWord>(
@@ -74,17 +109,49 @@ export class Ytdlp {
   ): PipeResponse {
     const paths = this.binaryProvider.getPathsSync();
     const executer = new Executer(paths?.ytdlp!);
+    const command = new StrategyDownload().buildCommand(
+      url, paths?.ffmpeg!, options
+    );
 
+    const passThrough = new PassThrough();
 
-    const command = new InfoStrategy().buildCommand(url, options);
-    const output = await executer.run(command);
+    const output = executer.run(command, passThrough);
 
-    throw new Error('Method not implemented.');
+    executer.on('progress', (data) => {
+      const progress = stringToProgress(data);
+      options?.onProgress?.(progress);
+    });
+
+    executer.on('error', (error) => {
+      options?.onError?.(error);
+    });
+
+    executer.on('end', () => {
+      options?.onEnd?.();
+    });
+
+    return {
+      promise: output,
+
+      pipeSync: (destination: NodeJS.WritableStream, options?: { end?: boolean }) =>
+        passThrough.pipe(destination, options),
+
+      pipe: (
+        destination: NodeJS.WritableStream,
+        options?: { end?: boolean }
+      ) => (
+        new Promise((resolve, reject) => {
+          const pt = passThrough.pipe(destination, options);
+          destination.on('finish', () => resolve(pt));
+          destination.on('error', reject);
+        })
+      ),
+    };
   }
-
-  // downloadSync<T extends FormatKeyWord>(
-  //   url: string,
-  //   options?: Omit<FormatOptions<T>, 'onProgress'>
-  // ): string {
-  // }
 }
+
+// downloadSync<T extends FormatKeyWord>(
+//   url: string,
+//   options?: Omit<FormatOptions<T>, 'onProgress'>
+// ): string {
+// }

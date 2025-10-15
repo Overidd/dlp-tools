@@ -27,7 +27,7 @@ const ByAudioQuality = {
   lowest: 'ba[abr<50]',
 } as const;
 
-export class FormatParser {
+export class Format {
   static parse<T extends FormatKeyWord>(
     format?: FormatOptions<T>['format'] | string
   ): string[] {
