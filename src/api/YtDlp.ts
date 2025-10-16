@@ -10,13 +10,14 @@ import type {
 
 import {
   parseJson,
-  stringToProgress,
+  VideoProgressUtils,
   UniqueIdGenerator
 } from '../utils';
 
 import {
   InfoStrategy,
-  StrategyDownload
+  StrategyDownload,
+  StrategyStream
 } from '../strategies';
 
 import {
@@ -86,9 +87,11 @@ export class Ytdlp {
     const command = new StrategyDownload().buildCommand(
       url, paths?.ffmpeg!, options
     );
+    const output = executer.run(command);
 
     executer.on('progress', (data) => {
-      const progress = stringToProgress(data);
+      const progress = VideoProgressUtils.stringToProgress(data);
+      if (!progress) return;
       options?.onProgress?.(progress);
     });
 
@@ -100,7 +103,7 @@ export class Ytdlp {
       options?.onEnd?.();
     });
 
-    return executer.run(command);
+    return output
   }
 
   stream<T extends FormatKeyWord>(
@@ -109,7 +112,7 @@ export class Ytdlp {
   ): PipeResponse {
     const paths = this.binaryProvider.getPathsSync();
     const executer = new Executer(paths?.ytdlp!);
-    const command = new StrategyDownload().buildCommand(
+    const command = new StrategyStream().buildCommand(
       url, paths?.ffmpeg!, options
     );
 
@@ -118,7 +121,8 @@ export class Ytdlp {
     const output = executer.run(command, passThrough);
 
     executer.on('progress', (data) => {
-      const progress = stringToProgress(data);
+      const progress = VideoProgressUtils.stringToProgress(data);
+      if (!progress) return;
       options?.onProgress?.(progress);
     });
 

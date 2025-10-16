@@ -102,9 +102,15 @@ export class Format {
 
   private static handleAudioAndVideo(format: FormatAudioAndVideoOptions): string[] {
     const { formatAudio, formatVideo, playlist } = format;
-    const args = ['-f', `${formatVideo || 'bv*'}+${formatAudio || 'ba'}`];
+
+    const video = formatVideo || 'bv*';
+    const audio = formatAudio || 'ba';
+
+    const args = ['-f', `${video}+${audio}/best`];
+
     return [...args, ...this.parsePlaylist(playlist)];
   }
+
 
   private static parsePlaylist(playlist?: playlistOptions): string[] {
     if (!playlist) return [];

@@ -19,7 +19,7 @@ export type AudioQuality =
   | 'low'
   | 'lowest';
 
-// 🎬 Formatos de video comunes
+// Formatos de video
 export type FormatIdVideo =
   | '160' // 144p
   | '133' // 240p
@@ -36,7 +36,7 @@ export type FormatIdVideo =
   | 'bv*' // video best
   | 'wv*'; // video worst
 
-// 🎧 Formatos de audio comunes
+// Formatos de audio
 export type FormatIdAudio =
   | '249' // webm tiny (50k)
   | '250' // webm tiny (70k)
