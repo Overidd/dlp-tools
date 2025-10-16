@@ -3,3 +3,8 @@ node_modules/
 pnpm-lock.yaml
 .env
 dist/
+
+bin/ffmpeg.exe
+bin/ffprobe.exe
+bin/yt-dlp.exe
+video.mp4
