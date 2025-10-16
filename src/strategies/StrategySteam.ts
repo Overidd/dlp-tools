@@ -1,6 +1,7 @@
 import { CommandBuilder } from '../core';
 import { FormatOptions } from '../interface';
 import { PROGRESS_STRING } from '../utils';
+import { Format } from '../utils/format';
 
 export abstract class StrategyBase {
   protected preBuildArgs(): string[] {
@@ -15,9 +16,11 @@ export abstract class StrategyBase {
     const { format, onProgress, ...opt } = options || {};
 
     const command = new CommandBuilder()
+      // .activeQuiet()
       .setArgs(['--windows-filenames'])
       .setArgs(['--ffmpeg-location', ffmpegPath])
       .setArgs(['--progress-template', PROGRESS_STRING])
+      .setArgs(Format.parse(format))
       .setArgs(this.preBuildArgs())
       .setOptions(opt)
       .setUrl(url)
@@ -28,13 +31,13 @@ export abstract class StrategyBase {
 }
 
 export class StrategyDownload extends StrategyBase {
-  protected postBuildArgs(): string[] {
+  protected preBuildArgs(): string[] {
     return ['-o', '%(title)s.%(ext)s'];
   }
 }
 
 export class StrategyStream extends StrategyBase {
-  protected postBuildArgs(): string[] {
+  protected preBuildArgs(): string[] {
     return ['-o', '-'];
   }
 }

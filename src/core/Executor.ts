@@ -32,30 +32,39 @@ export class Executer extends EventEmitter {
       }
 
       proc.stdout.on('data', (data) => {
-        const text = data.toString();
+        const text = Buffer.from(data).toString();
+        if (!text.includes('bright')) return;
+        this.emit('progress', text);
 
-        if (text.includes('"progress"')) this.emit('progress', text);
-
-        output += text;
         if (output.length > 10_000_000) {
           proc.kill();
           reject(YtdlpError.exec('Output too large'));
         }
+
+        if (passThrough) return;
+        output += text;
       });
 
       proc.stderr.on('data', (data) => {
+        const text = data.toString();
+        if (!text.includes('bright')) return;
+        this.emit('error', text);
         if (passThrough) return;
-        error += data.toString();
-        this.emit('error', data.toString());
+        error += text;
       });
 
       proc.on('close', (code) => {
         if (code === 0) {
           resolve(output.trim());
         } else {
-          console.log({ error })
           reject(YtdlpError.exec(error || `yt-dlp exited with code ${code}`));
         }
+        if (passThrough) {
+          passThrough.end();
+        }
+
+        proc.kill();
+
       });
 
       proc.on('error', (err) => {

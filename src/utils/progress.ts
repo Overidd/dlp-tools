@@ -43,7 +43,8 @@ export class VideoProgressUtils {
     try {
       if (!str.includes('bright')) throw new Error();
 
-      const jsonStr = str.split('\r')?.[1]?.trim()?.split('-')?.[1];
+      const jsonStr = str.replace('bright-', '').trim();
+
       if (!jsonStr) throw new Error();
 
       const object = JSON.parse(jsonStr);
