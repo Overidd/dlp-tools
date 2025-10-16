@@ -20,8 +20,7 @@ export class BinaryProvider {
   }: { ytdlpPath?: string; ffmpegPath?: string } = {}) {
     this.installBinary = new InstallBinary();
     this.ytdlpPath = ytdlpPath || 'yt-dlp';
-    console.log(this.ffmpeg.findFFmpegBinary(), '---')
-    this.ffmpegPath = ffmpegPath || this.ffmpeg.findFFmpegBinary() || 'ffmpeg';
+    this.ffmpegPath = ffmpegPath || this.ffmpeg.findFFmpegBinary();
   }
 
   /**

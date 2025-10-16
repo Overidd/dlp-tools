@@ -38,9 +38,9 @@ export type FormatIdVideo =
 
 // Formatos de audio
 export type FormatIdAudio =
-  | '249' // webm tiny (50k)
-  | '250' // webm tiny (70k)
-  | '251' // webm medium (160k)
+  | '249' // opus (50k)
+  | '250' // opus (70k)
+  | '251' // opus medium (160k)
   | '140' // m4a medium (128k)
   | '139' // m4a low (48k)
   | 'ba'  // best audio

@@ -26,7 +26,6 @@ import { Ytdlp } from '../src/api/YtDlp'
           video: "720p",
           audio: "medium",
         },
-        type: "ogg",
       },
 
       // output: "./video/%(title)s.%(ext)s",
