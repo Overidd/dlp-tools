@@ -3,6 +3,7 @@ import { PassThrough } from 'node:stream';
 import type {
   FormatKeyWord,
   FormatOptions,
+  IArgsOptions,
   InfoOptions,
   InfoResult,
   PipeResponse
@@ -15,6 +16,7 @@ import {
 } from '../utils';
 
 import {
+  ExecStrategy,
   InfoStrategy,
   StrategyDownload,
   StrategyStream
@@ -76,6 +78,13 @@ export class Ytdlp {
     } : parsed as InfoResult<T>;
 
     return result
+  }
+
+  async exec(url: string, options?: IArgsOptions) {
+    const paths = await this.binaryProvider.getPaths();
+    const executer = new Executer(paths?.ytdlp!);
+    const command = new ExecStrategy().buildCommand(url, options);
+    return executer.run(command);
   }
 
   async download<T extends FormatKeyWord>(

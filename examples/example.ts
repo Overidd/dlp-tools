@@ -72,6 +72,10 @@ import { Ytdlp } from '../src/api/YtDlp'
 
   // await stream.pipe(st);
   //* ==================================================== 
+
+  await ytdlp.exec('https://youtu.be/VAuMrxuGlQw?si=kQe0S27ha4KQXmmz')
+
+
 })()
 // --ignore-errors --no-warnings
 // '--live-from-start';
