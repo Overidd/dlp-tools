@@ -1,17 +1,40 @@
 {
   "name": "dlp-tools",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "TypeScript wrapper for yt-dlp with binary management and fluent API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsnd --respawn --clear ./src/app.ts",
+    "dev": "tsnd --respawn --clear ./src/index.ts",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/app.js"
+    "start": "npm run build && node dist/index.js",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "yt-dlp",
+    "youtube-dl",
+    "video",
+    "audio",
+    "download",
+    "wrapper",
+    "typescript"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Overidd/dlp-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Overidd/dlp-tools/issues"
+  },
+  "homepage": "https://github.com/Overidd/dlp-tools#readme",
   "devDependencies": {
     "@types/node": "^24.5.2",
     "rimraf": "^6.0.1",
