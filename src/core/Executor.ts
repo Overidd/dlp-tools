@@ -64,7 +64,7 @@ export class Executer extends EventEmitter {
         }
 
         proc.kill();
-
+        this.emit('end');
       });
 
       proc.on('error', (err) => {

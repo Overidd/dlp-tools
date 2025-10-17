@@ -18,17 +18,19 @@ import { Ytdlp } from '../src/api/YtDlp'
 
   // //* ==================================================== 
   await ytdlp.download(
-    'https://youtu.be/6bIimzl5NYM?si=l3AWo2Fh4vKwEGLp',
+    'https://youtu.be/VAuMrxuGlQw?si=kQe0S27ha4KQXmmz',
     {
       format: {
-        filter: "mergevideo",
+        filter: 'mergevideo',
         quality: {
-          video: "720p",
-          audio: "medium",
+          video: '720p',
+          audio: 'medium',
         },
+
+        type: 'mp4',
       },
 
-      // output: "./video/%(title)s.%(ext)s",
+      // output: './video/%(title)s.%(ext)s',
 
       onProgress: (progress) => {
         console.log(progress);
